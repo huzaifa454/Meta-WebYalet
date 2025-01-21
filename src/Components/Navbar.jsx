@@ -14,11 +14,13 @@ const NavBar = () => {
   const [isOpen, setOpen] = useState(false);
 
   const handleToggle = () => {
+    ("Menu toggled:", !isOpen);
     setOpen(!isOpen);
   };
+  
 
   return (
-    <div className="sticky z-10 bg-black h-[12vh] cursor-pointer text-white flex justify-between items-center px-6 py-4 text-2xl">
+    <div className="sticky z-10 bg-black h-[12vh] cursor-pointer text-white flex justify-between items-center px-6 py-4 text-xl">
       <div className="flex flex-col items-center justify-center">
         <Link
           to="home"
@@ -34,8 +36,8 @@ const NavBar = () => {
                 className="object-cover w-full h-full"
               />
             </div>
-            <h1 className="text-xl font-bold bg-gradient-to-r from-purple-500 to-black">
-              Meta WebYalet
+            <h1 className="text-xl font-bold bg-gradient-to-r from-purple-500 to-blue-500">
+              Meta WebValet
             </h1>
           </div>
         </Link>
@@ -92,7 +94,7 @@ const NavBar = () => {
       <div className="flex items-center gap-10">
         <div className="hidden sm:flex gap-6 text-lg">
           <div>
-            <button className="bg-gradient-to-l from-purple-500 to-black rounded-full border-2 p-2 hover:text-purple-400 font-semibold">
+            <button className="bg-gradient-to-l from-purple-500 to-blue-500 rounded-full border-2 p-2 hover:text-xl font-semibold">
               Request a quote
             </button>
           </div>
@@ -114,12 +116,12 @@ const NavBar = () => {
       </div>
 
       {isOpen && (
-        <div className="absolute top-[12vh] left-0 w-full bg-black flex flex-col items-center text-white text-lg sm:hidden py-4 z-20">
+        <div className="absolute top-[6vh] left-0 w-full bg-black flex flex-col items-center text-white text-lg sm:hidden py-4 z-20">
           <Link
             to="home"
             smooth={true}
             duration={500}
-            className="py-2 transition-colors duration-300 hover:text-purple-500"
+            className="py-2 hover:text-primary transition-colors duration-300"
             onClick={() => setOpen(false)}
           >
             <FaHome className="inline mr-2" />
@@ -129,7 +131,7 @@ const NavBar = () => {
             to="about"
             smooth={true}
             duration={500}
-            className="py-2 transition-colors duration-300 hover:text-purple-500"
+            className="py-2 hover:text-primary transition-colors duration-300"
             onClick={() => setOpen(false)}
           >
             <FaUserAlt className="inline mr-2" />
@@ -139,7 +141,7 @@ const NavBar = () => {
             to="service"
             smooth={true}
             duration={500}
-            className="py-2 transition-colors duration-300 hover:text-purple-500"
+            className="py-2 hover:text-primary transition-colors duration-300"
             onClick={() => setOpen(false)}
           >
             <FaServicestack className="inline mr-2" />
@@ -149,7 +151,7 @@ const NavBar = () => {
             to="projects"
             smooth={true}
             duration={500}
-            className="py-2 transition-colors duration-300 hover:text-purple-500"
+            className="py-2 hover:text-primary transition-colors duration-300"
             onClick={() => setOpen(false)}
           >
             <FaProjectDiagram className="inline mr-2" />
@@ -159,7 +161,7 @@ const NavBar = () => {
             to="contact"
             smooth={true}
             duration={500}
-            className="py-2 transition-colors duration-300 hover:text-purple-500"
+            className="py-2 hover:text-primary transition-colors duration-300"
             onClick={() => setOpen(false)}
           >
             <FaEnvelope className="inline mr-2" />
