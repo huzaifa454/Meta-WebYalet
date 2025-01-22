@@ -1,17 +1,67 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-scroll";
 import { motion } from "framer-motion";
-import img from "../assets/image5.jpg";
+import emailjs from "emailjs-com";
 
 const Home = () => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [formData, setFormData] = useState({
+    name: "",
+    zipCode: "",
+    houseSize: "",
+    contactNumber: "",
+    comments: "",
+  });
+
+  const openModal = () => setIsModalOpen(true);
+  const closeModal = () => setIsModalOpen(false);
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    const serviceId = import.meta.env.VITE_SERVICE_KEY;
+    const templateId = import.meta.env.VITE_TEMPLATE_KEY;
+    const userId = import.meta.env.VITE_PUBLIC_KEY;
+
+    if (
+      !formData.name ||
+      !formData.zipCode ||
+      !formData.houseSize ||
+      !formData.contactNumber ||
+      !formData.comments
+    ) {
+      alert("Please fill all the fields!");
+      return;
+    }
+
+    emailjs.send(serviceId, templateId, formData, userId).then(
+      (result) => {
+        alert("Email sent successfully!");
+        console.log("Email sent:", result.text);
+        setFormData({
+          name: "",
+          zipCode: "",
+          houseSize: "",
+          contactNumber: "",
+          comments: "",
+        });
+        closeModal();
+      },
+      (error) => {
+        alert("Failed to send email. Please try again.");
+        console.error("Email error:", error.text);
+      }
+    );
+  };
+
   return (
     <div className="relative min-h-screen">
-      <img
-        src={img}
-        alt="Background"
-        className="object-cover w-full h-full absolute"
-      />
-      <div className="relative z-10 text-white flex flex-col justify-center items-center min-h-screen px-4 py-16 sm:py-24 md:py-32 font-serif">
+      <div className="relative z-10 text-white flex flex-col justify-center items-center min-h-screen px-4 py-16 sm:py-24 md:py-32 font-serif cursor-default">
         <motion.h1
           className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-extrabold text-center bg-gradient-to-r from-purple-500 to-blue-500 bg-clip-text text-transparent"
           initial={{ opacity: 0, y: -50 }}
@@ -29,7 +79,7 @@ const Home = () => {
           WebValet.
         </motion.h2>
         <motion.p
-          className="max-w-[90%] sm:max-w-[600px] text-center text-sm sm:text-lg md:text-xl lg:text-2xl pt-6 px-4 font-thin"
+          className="max-w-[90%] sm:max-w-[30%] text-center pt-6 px-4 font-thin"
           initial={{ opacity: 0, y: -50 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1.5, delay: 0.4 }}
@@ -44,16 +94,91 @@ const Home = () => {
           transition={{ duration: 0.5, delay: 0.6 }}
           className="mt-6"
         >
-          <Link
-            to="about"
-            smooth={true}
-            duration={500}
-            className="cursor-pointer hover:text-primary bg-gradient-to-r from-purple-500 to-blue-500 border-2 text-white font-bold text-sm sm:text-base md:text-lg py-2 px-4 rounded-full shadow-lg"
-          >
-            Learn More
-          </Link>
+          <div className="flex flex-wrap gap-4">
+            <Link
+              to="about"
+              smooth={true}
+              duration={500}
+              className="cursor-pointer hover:text-primary bg-gradient-to-r from-purple-500 to-blue-500 border-2 text-white font-bold text-sm sm:text-base md:text-lg py-2 px-4 rounded-full shadow-lg"
+            >
+              Learn More
+            </Link>
+            <button
+              onClick={openModal}
+              className="sm:hidden cursor-pointer hover:text-primary bg-gradient-to-r from-purple-500 to-blue-500 border-2 text-white font-bold text-sm sm:text-base md:text-lg py-2 px-4 rounded-full shadow-lg"
+            >
+              Request a Quote
+            </button>
+          </div>
         </motion.div>
       </div>
+
+      {/* Modal */}
+      {isModalOpen && (
+        <div
+          className="fixed inset-0 bg-gray-700 bg-opacity-50 flex items-center justify-center z-50" // z-index is set to 50
+        >
+          <div className="bg-white p-6 rounded-lg w-11/12 sm:w-1/2">
+            <h2 className="text-2xl font-bold mb-4 text-center">Request a Free Quote</h2>
+            <form onSubmit={handleSubmit}>
+              <input
+                type="text"
+                name="name"
+                value={formData.name}
+                onChange={handleChange}
+                placeholder="Your Name"
+                className="mb-4 p-2 w-full border rounded-md"
+              />
+              <input
+                type="text"
+                name="houseSize"
+                value={formData.houseSize}
+                onChange={handleChange}
+                placeholder="House Size"
+                className="mb-4 p-2 w-full border rounded-md"
+              />
+              <input
+                type="text"
+                name="contactNumber"
+                value={formData.contactNumber}
+                onChange={handleChange}
+                placeholder="Contact Number"
+                className="mb-4 p-2 w-full border rounded-md"
+              />
+              <input
+                type="text"
+                name="zipCode"
+                value={formData.zipCode}
+                onChange={handleChange}
+                placeholder="ZIP Code"
+                className="mb-4 p-2 w-full border rounded-md"
+              />
+              <textarea
+                name="comments"
+                value={formData.comments}
+                onChange={handleChange}
+                placeholder="Additional Info"
+                className="mb-4 p-2 w-full border rounded-md"
+              />
+              <div className="flex justify-between">
+                <button
+                  type="button"
+                  onClick={closeModal}
+                  className="bg-gradient-to-r from-purple-500 to-blue-500 text-white font-bold py-2 px-6 rounded-full text-lg transition-all duration-300"
+                >
+                  Close
+                </button>
+                <button
+                  type="submit"
+                  className="bg-gradient-to-r from-purple-500 to-blue-500 text-white font-bold py-2 px-6 rounded-full text-lg transition-all duration-300"
+                >
+                  Submit
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

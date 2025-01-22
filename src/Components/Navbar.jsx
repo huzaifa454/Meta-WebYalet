@@ -1,7 +1,4 @@
 import { useState } from "react";
-import HamburgerMenu from "react-hamburger-menu";
-import { Link } from "react-scroll";
-import logo from "../assets/logo.png";
 import {
   FaHome,
   FaUserAlt,
@@ -9,164 +6,254 @@ import {
   FaProjectDiagram,
   FaEnvelope,
 } from "react-icons/fa";
+import { Link } from "react-scroll";
+import logo from "../assets/logo.png";
+import HamburgerMenu from "react-hamburger-menu";
 
 const NavBar = () => {
-  const [isOpen, setOpen] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
+  const [formData, setFormData] = useState({
+    name: "",
+    zipCode: "",
+    houseSize: "",
+    contactNumber: "",
+    comments: "",
+  });
 
-  const handleToggle = () => {
-    ("Menu toggled:", !isOpen);
-    setOpen(!isOpen);
+  const openModal = () => setIsModalOpen(true);
+  const closeModal = () => setIsModalOpen(false);
+  const handleToggle = () => setIsOpen(!isOpen);
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
   };
-  
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    const serviceId = import.meta.env.VITE_SERVICE_KEY;
+    const templateId = import.meta.env.VITE_TEMPLATE_KEY;
+    const userId = import.meta.env.VITE_PUBLIC_KEY;
+
+    if (
+      !formData.name ||
+      !formData.zipCode ||
+      !formData.houseSize ||
+      !formData.contactNumber ||
+      !formData.comments
+    ) {
+      alert("Please fill all the fields!");
+      return;
+    }
+
+    alert("Form Submitted!");
+    closeModal();
+  };
 
   return (
-    <div className="sticky z-10 bg-black h-[12vh] cursor-pointer text-white flex justify-between items-center px-6 py-4 text-xl">
-      <div className="flex flex-col items-center justify-center">
-        <Link
-          to="home"
-          smooth={true}
-          duration={500}
-          className="text-white transition-colors duration-300"
-        >
-          <div className="flex items-center space-x-4">
-            <div className="rounded-full overflow-hidden w-16 h-16 border-2 border-transparent bg-clip-border bg-purple-500">
-              <img
-                src={logo}
-                alt="Logo"
-                className="object-cover w-full h-full"
-              />
-            </div>
-            <h1 className="text-xl font-bold bg-gradient-to-r from-purple-500 to-blue-500">
-              Meta WebValet
-            </h1>
-          </div>
-        </Link>
+    <div className="sticky top-0 z-30 bg-black h-[12vh] text-white flex justify-between items-center px-6 py-4 text-xl">
+      <div className="flex items-center space-x-4 cursor-default">
+        <div className="rounded-full overflow-hidden w-16 h-16 border-2 border-transparent bg-clip-border bg-purple-500">
+          <img src={logo} alt="Logo" className="object-cover w-full h-full" />
+        </div>
+        <h1 className="text-xl font-sans">Meta WebValet</h1>
       </div>
 
-      <div className="hidden sm:flex absolute left-1/2 transform -translate-x-1/2 gap-6 text-lg">
-        <Link
-          to="home"
-          smooth={true}
-          duration={500}
-          className="transition-colors duration-300 hover:text-purple-500"
-        >
+      <div className="hidden sm:flex absolute left-1/2 transform -translate-x-1/2 gap-6 text-lg cursor-pointer">
+        <Link to="home" smooth duration={500} className="hover:text-purple-500">
           <FaHome className="inline mr-2" />
           Home
         </Link>
         <Link
           to="about"
-          smooth={true}
+          smooth
           duration={500}
-          className="transition-colors duration-300 hover:text-purple-500"
+          className="hover:text-purple-500"
         >
           <FaUserAlt className="inline mr-2" />
           About Us
         </Link>
         <Link
           to="service"
-          smooth={true}
+          smooth
           duration={500}
-          className="transition-colors duration-300 hover:text-purple-500"
+          className="hover:text-purple-500"
         >
           <FaServicestack className="inline mr-2" />
           Services
         </Link>
         <Link
           to="projects"
-          smooth={true}
+          smooth
           duration={500}
-          className="transition-colors duration-300 hover:text-purple-500"
+          className="hover:text-purple-500"
         >
           <FaProjectDiagram className="inline mr-2" />
           Projects
         </Link>
         <Link
           to="contact"
-          smooth={true}
+          smooth
           duration={500}
-          className="transition-colors duration-300 hover:text-purple-500"
+          className="hover:text-purple-500"
         >
           <FaEnvelope className="inline mr-2" />
           Contact Us
         </Link>
       </div>
 
-      <div className="flex items-center gap-10">
-        <div className="hidden sm:flex gap-6 text-lg">
-          <div>
-            <button className="bg-gradient-to-l from-purple-500 to-blue-500 rounded-full border-2 p-2 hover:text-xl font-semibold">
-              Request a quote
-            </button>
-          </div>
-        </div>
+      <div className="hidden sm:flex">
+        <button
+          onClick={openModal}
+          className="cursor-pointer bg-gradient-to-r from-purple-500 to-blue-500 text-white font-bold text-sm sm:text-base md:text-lg py-2 px-4 rounded-full shadow-lg"
+        >
+          Request a Quote
+        </button>
       </div>
 
-      <div className="sm:hidden">
+      {/* Hamburger Menu */}
+      <div className="sm:hidden z-40">
         <HamburgerMenu
           isOpen={isOpen}
           menuClicked={handleToggle}
           width={24}
           height={18}
           strokeWidth={2}
-          rotate={0}
           color="white"
-          borderRadius={0}
           animationDuration={0.5}
         />
       </div>
 
-      {isOpen && (
-        <div className="absolute top-[6vh] left-0 w-full bg-black flex flex-col items-center text-white text-lg sm:hidden py-4 z-20">
+      {/* Side Navigation (Mobile view) */}
+      <div
+        className={`fixed top-0 right-0 h-full w-2/3 bg-black text-white shadow-lg transition-transform duration-300 z-50 ${
+          isOpen ? "translate-x-0" : "translate-x-full"
+        }`}
+      >
+        <div className="flex flex-col items-start p-6">
+          <button
+            className="self-end mb-4 text-lg"
+            onClick={() => setIsOpen(false)}
+          >
+            ✖ Close
+          </button>
           <Link
             to="home"
-            smooth={true}
+            smooth
             duration={500}
-            className="py-2 hover:text-primary transition-colors duration-300"
-            onClick={() => setOpen(false)}
+            className="py-2 text-lg hover:text-purple-500"
+            onClick={() => setIsOpen(false)}
           >
             <FaHome className="inline mr-2" />
             Home
           </Link>
           <Link
             to="about"
-            smooth={true}
+            smooth
             duration={500}
-            className="py-2 hover:text-primary transition-colors duration-300"
-            onClick={() => setOpen(false)}
+            className="py-2 text-lg hover:text-purple-500"
+            onClick={() => setIsOpen(false)}
           >
             <FaUserAlt className="inline mr-2" />
-            About
+            About Us
           </Link>
           <Link
             to="service"
-            smooth={true}
+            smooth
             duration={500}
-            className="py-2 hover:text-primary transition-colors duration-300"
-            onClick={() => setOpen(false)}
+            className="py-2 text-lg hover:text-purple-500"
+            onClick={() => setIsOpen(false)}
           >
             <FaServicestack className="inline mr-2" />
             Services
           </Link>
           <Link
             to="projects"
-            smooth={true}
+            smooth
             duration={500}
-            className="py-2 hover:text-primary transition-colors duration-300"
-            onClick={() => setOpen(false)}
+            className="py-2 text-lg hover:text-purple-500"
+            onClick={() => setIsOpen(false)}
           >
             <FaProjectDiagram className="inline mr-2" />
             Projects
           </Link>
           <Link
             to="contact"
-            smooth={true}
+            smooth
             duration={500}
-            className="py-2 hover:text-primary transition-colors duration-300"
-            onClick={() => setOpen(false)}
+            className="py-2 text-lg hover:text-purple-500"
+            onClick={() => setIsOpen(false)}
           >
             <FaEnvelope className="inline mr-2" />
-            Contact
+            Contact Us
           </Link>
+        </div>
+      </div>
+
+      {/* Modal */}
+      {isModalOpen && (
+        <div className="fixed inset-0 flex items-center justify-center z-50">
+          <div className="bg-white p-6 rounded-lg w-11/12 sm:w-1/2">
+            <h2 className="text-2xl font-bold mb-4 text-black text-center font-sans cursor-default">Request a Free Quote</h2>
+            <form onSubmit={handleSubmit}>
+              <input
+                type="text"
+                name="name"
+                value={formData.name}
+                onChange={handleChange}
+                placeholder="Your Name"
+                className="mb-4 p-2 w-full border rounded-md"
+              />
+              <input
+                type="text"
+                name="houseSize"
+                value={formData.houseSize}
+                onChange={handleChange}
+                placeholder="House Size"
+                className="mb-4 p-2 w-full border rounded-md"
+              />
+              <input
+                type="text"
+                name="contactNumber"
+                value={formData.contactNumber}
+                onChange={handleChange}
+                placeholder="Contact Number"
+                className="mb-4 p-2 w-full border rounded-md"
+              />
+              <input
+                type="text"
+                name="zipCode"
+                value={formData.zipCode}
+                onChange={handleChange}
+                placeholder="ZIP Code"
+                className="mb-4 p-2 w-full border rounded-md"
+              />
+              <textarea
+                name="comments"
+                value={formData.comments}
+                onChange={handleChange}
+                placeholder="Additional Info"
+                className="mb-4 p-2 w-full border rounded-md"
+              />
+              <div className="flex justify-between">
+                <button
+                  type="button"
+                  onClick={closeModal}
+                  className="bg-gradient-to-r from-purple-500 to-blue-500 text-white font-bold py-2 px-6 rounded-full text-lg transition-all duration-300"
+                >
+                  Close
+                </button>
+                <button
+                  type="submit"
+                  className="bg-gradient-to-r from-purple-500 to-blue-500 text-white font-bold py-2 px-6 rounded-full text-lg transition-all duration-300"
+                >
+                  Submit
+                </button>
+              </div>
+            </form>
+          </div>
         </div>
       )}
     </div>
