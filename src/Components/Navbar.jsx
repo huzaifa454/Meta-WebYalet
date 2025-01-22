@@ -15,10 +15,11 @@ const NavBar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [formData, setFormData] = useState({
     name: "",
-    zipCode: "",
-    houseSize: "",
-    contactNumber: "",
-    comments: "",
+    email: "",
+    projectType: "",
+    budgetRange: "",
+    timeline: "",
+    message: "",
   });
 
   const openModal = () => setIsModalOpen(true);
@@ -39,10 +40,11 @@ const NavBar = () => {
 
     if (
       !formData.name ||
-      !formData.zipCode ||
-      !formData.houseSize ||
-      !formData.contactNumber ||
-      !formData.comments
+      !formData.email ||
+      !formData.projectType ||
+      !formData.budgetRange ||
+      !formData.timeline ||
+      !formData.message
     ) {
       alert("Please fill all the fields!");
       return;
@@ -196,7 +198,9 @@ const NavBar = () => {
       {isModalOpen && (
         <div className="fixed inset-0 flex items-center justify-center z-50">
           <div className="bg-white p-6 rounded-lg w-11/12 sm:w-1/2">
-            <h2 className="text-2xl font-bold mb-4 text-black text-center font-sans cursor-default">Request a Free Quote</h2>
+            <h2 className="text-2xl font-bold mb-4 text-black text-center font-sans cursor-default">
+              Request a Free Quote
+            </h2>
             <form onSubmit={handleSubmit}>
               <input
                 type="text"
@@ -204,38 +208,46 @@ const NavBar = () => {
                 value={formData.name}
                 onChange={handleChange}
                 placeholder="Your Name"
-                className="mb-4 p-2 w-full border rounded-md"
+                className="mb-4 p-2 w-full border rounded-md text-black"
               />
               <input
                 type="text"
-                name="houseSize"
-                value={formData.houseSize}
+                name="email"
+                value={formData.email}
                 onChange={handleChange}
-                placeholder="House Size"
-                className="mb-4 p-2 w-full border rounded-md"
+                placeholder="email"
+                className="mb-4 p-2 w-full border rounded-md text-black"
               />
               <input
                 type="text"
-                name="contactNumber"
-                value={formData.contactNumber}
+                name="projectType"
+                value={formData.projectType}
                 onChange={handleChange}
-                placeholder="Contact Number"
-                className="mb-4 p-2 w-full border rounded-md"
+                placeholder="projectType"
+                className="mb-4 p-2 w-full border rounded-md text-black"
               />
               <input
                 type="text"
-                name="zipCode"
-                value={formData.zipCode}
+                name="budgetRange"
+                value={formData.budgetRange}
                 onChange={handleChange}
-                placeholder="ZIP Code"
-                className="mb-4 p-2 w-full border rounded-md"
+                placeholder="budgetRange"
+                className="mb-4 p-2 w-full border rounded-md text-black"
+              />
+              <input
+                type="text"
+                name="timeline"
+                value={formData.timeline}
+                onChange={handleChange}
+                placeholder="timeline"
+                className="mb-4 p-2 w-full border rounded-md text-black"
               />
               <textarea
-                name="comments"
-                value={formData.comments}
+                name="message"
+                value={formData.message}
                 onChange={handleChange}
                 placeholder="Additional Info"
-                className="mb-4 p-2 w-full border rounded-md"
+                className="mb-4 p-2 w-full border rounded-md text-black"
               />
               <div className="flex justify-between">
                 <button

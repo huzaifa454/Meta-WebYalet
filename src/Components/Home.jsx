@@ -61,17 +61,17 @@ const Home = () => {
 
   return (
     <div className="relative min-h-screen">
-      <div className="relative z-10 text-white flex flex-col justify-center items-center min-h-screen px-4 py-16 sm:py-24 md:py-32 font-serif cursor-default">
+      <div className="relative z-10 text-white flex flex-col justify-center items-center min-h-screen px-4 py-16 sm:py-24 md:py-32 cursor-default">
         <motion.h1
-          className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-extrabold text-center bg-gradient-to-r from-purple-500 to-blue-500 bg-clip-text text-transparent"
+          className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-extrabold text-center font-serif bg-gradient-to-r from-purple-500 to-blue-500 bg-clip-text text-transparent"
           initial={{ opacity: 0, y: -50 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1 }}
         >
-          Meta
+          'Meta
         </motion.h1>
         <motion.h2
-          className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-extrabold text-center mt-2"
+          className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-extrabold text-center mt-2 font-serif "
           initial={{ opacity: 0, y: -50 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1.2, delay: 0.2 }}
@@ -79,7 +79,7 @@ const Home = () => {
           WebValet.
         </motion.h2>
         <motion.p
-          className="max-w-[90%] sm:max-w-[30%] text-center pt-6 px-4 font-thin"
+          className="max-w-[90%] sm:max-w-[30%] text-center pt-6 px-4"
           initial={{ opacity: 0, y: -50 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1.5, delay: 0.4 }}
@@ -99,13 +99,13 @@ const Home = () => {
               to="about"
               smooth={true}
               duration={500}
-              className="cursor-pointer hover:text-primary bg-gradient-to-r from-purple-500 to-blue-500 border-2 text-white font-bold text-sm sm:text-base md:text-lg py-2 px-4 rounded-full shadow-lg"
+              className="cursor-pointer hover:text-primary bg-gradient-to-r from-purple-500 to-blue-500 text-white font-bold text-sm sm:text-base md:text-lg py-2 px-4 rounded-full shadow-lg"
             >
               Learn More
             </Link>
             <button
               onClick={openModal}
-              className="sm:hidden cursor-pointer hover:text-primary bg-gradient-to-r from-purple-500 to-blue-500 border-2 text-white font-bold text-sm sm:text-base md:text-lg py-2 px-4 rounded-full shadow-lg"
+              className="sm:hidden cursor-pointer hover:text-primary bg-gradient-to-r from-purple-500 to-blue-500 text-white font-bold text-sm sm:text-base md:text-lg py-2 px-4 rounded-full shadow-lg"
             >
               Request a Quote
             </button>
@@ -115,11 +115,11 @@ const Home = () => {
 
       {/* Modal */}
       {isModalOpen && (
-        <div
-          className="fixed inset-0 bg-gray-700 bg-opacity-50 flex items-center justify-center z-50" // z-index is set to 50
-        >
+        <div className="fixed inset-0 bg-gray-700 bg-opacity-50 flex items-center justify-center z-50">
           <div className="bg-white p-6 rounded-lg w-11/12 sm:w-1/2">
-            <h2 className="text-2xl font-bold mb-4 text-center">Request a Free Quote</h2>
+            <h2 className="text-2xl font-bold mb-4 text-center">
+              Request a Free Quote
+            </h2>
             <form onSubmit={handleSubmit}>
               <input
                 type="text"
@@ -127,38 +127,46 @@ const Home = () => {
                 value={formData.name}
                 onChange={handleChange}
                 placeholder="Your Name"
-                className="mb-4 p-2 w-full border rounded-md"
+                className="mb-4 p-2 w-full border rounded-md text-black"
               />
               <input
                 type="text"
-                name="houseSize"
-                value={formData.houseSize}
+                name="email"
+                value={formData.email}
                 onChange={handleChange}
-                placeholder="House Size"
-                className="mb-4 p-2 w-full border rounded-md"
+                placeholder="email"
+                className="mb-4 p-2 w-full border rounded-md text-black"
               />
               <input
                 type="text"
-                name="contactNumber"
-                value={formData.contactNumber}
+                name="projectType"
+                value={formData.projectType}
                 onChange={handleChange}
-                placeholder="Contact Number"
-                className="mb-4 p-2 w-full border rounded-md"
+                placeholder="projectType"
+                className="mb-4 p-2 w-full border rounded-md text-black"
               />
               <input
                 type="text"
-                name="zipCode"
-                value={formData.zipCode}
+                name="budgetRange"
+                value={formData.budgetRange}
                 onChange={handleChange}
-                placeholder="ZIP Code"
-                className="mb-4 p-2 w-full border rounded-md"
+                placeholder="budgetRange"
+                className="mb-4 p-2 w-full border rounded-md text-black"
+              />
+              <input
+                type="text"
+                name="timeline"
+                value={formData.timeline}
+                onChange={handleChange}
+                placeholder="timeline"
+                className="mb-4 p-2 w-full border rounded-md text-black"
               />
               <textarea
-                name="comments"
-                value={formData.comments}
+                name="message"
+                value={formData.message}
                 onChange={handleChange}
                 placeholder="Additional Info"
-                className="mb-4 p-2 w-full border rounded-md"
+                className="mb-4 p-2 w-full border rounded-md text-black"
               />
               <div className="flex justify-between">
                 <button
