@@ -55,12 +55,12 @@ const NavBar = () => {
   };
 
   return (
-    <div className="sticky top-0 z-30 bg-black h-[12vh] text-white flex justify-between items-center px-6 py-4 text-xl">
+    <div className="sticky top-0 z-30 text-white flex justify-between items-center px-12 py-4 text-xl">
       <div className="flex items-center space-x-4 cursor-default">
-        <div className="rounded-full overflow-hidden w-16 h-16 border-2 border-transparent bg-clip-border bg-purple-500">
+        <div className="rounded-full overflow-hidden w-16 h-16 border-2 border-purple-600">
           <img src={logo} alt="Logo" className="object-cover w-full h-full" />
         </div>
-        <h1 className="text-xl font-sans">Meta WebValet</h1>
+        <h1 className="text-xl font-serif">Meta WebValet</h1>
       </div>
 
       <div className="hidden sm:flex absolute left-1/2 transform -translate-x-1/2 gap-6 text-lg cursor-pointer">
@@ -109,7 +109,7 @@ const NavBar = () => {
       <div className="hidden sm:flex">
         <button
           onClick={openModal}
-          className="cursor-pointer bg-gradient-to-r from-purple-500 to-blue-500 text-white font-bold text-sm sm:text-base md:text-lg py-2 px-4 rounded-full shadow-lg"
+          className="bg-gradient-to-r from-purple-500 to-blue-500 text-white text-sm sm:text-base md:text-lg py-2 px-2 hover:px-4 rounded-full shadow-lg transition-all duration-300 ease-in-out hover:scale-105"
         >
           Request a Quote
         </button>
