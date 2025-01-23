@@ -28,7 +28,7 @@ const About = () => {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 1 }}
       >
-        About Us.
+        About <span className="text-white">Us.</span> 
       </motion.h1>
       <motion.p
         className="max-w-3xl text-lg md:text-xl leading-relaxed mb-12 font-serif"

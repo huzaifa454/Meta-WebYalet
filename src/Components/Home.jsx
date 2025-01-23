@@ -99,9 +99,13 @@ const Home = () => {
               to="about"
               smooth={true}
               duration={500}
-              className="cursor-pointer hover:text-primary bg-gradient-to-r from-purple-500 to-blue-500 text-white font-bold text-sm sm:text-base md:text-lg py-2 px-4 rounded-full shadow-lg"
+              className="cursor-pointer bg-gradient-to-r from-purple-500 to-blue-500 text-white font-bold text-sm sm:text-base md:text-lg py-2 px-4 rounded-full shadow-lg relative overflow-hidden group"
             >
-              Learn More
+              <motion.span
+                whileHover={{ scale: 1.1 }}
+                className="absolute inset-0 bg-gradient-to-r from-blue-600 to-purple-600 opacity-0 group-hover:opacity-100 transition duration-300"
+              />
+              <span className="relative">Learn More</span>
             </Link>
             <button
               onClick={openModal}
