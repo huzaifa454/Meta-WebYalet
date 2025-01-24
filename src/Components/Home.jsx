@@ -61,7 +61,7 @@ const Home = () => {
 
   return (
     <div className="relative min-h-screen">
-      <div className="relative z-10 text-white flex flex-col justify-center items-center min-h-screen px-4 py-16 sm:py-24 md:py-32 cursor-default">
+      <div className="relative z-10 text-white flex flex-col justify-center items-center min-h-screen px-4 sm:py-24 md:py-32 cursor-default">
         <motion.h1
           className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-extrabold text-center font-serif bg-gradient-to-r from-purple-500 to-blue-500 bg-clip-text text-transparent"
           initial={{ opacity: 0, y: -50 }}
@@ -98,41 +98,46 @@ const Home = () => {
           transition={{ duration: 0.5, delay: 0.6 }}
           className="mt-6"
         >
-          <div className="flex flex-wrap gap-4">
-            <motion.div
-              initial={{ opacity: 0, y: 50 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: false, amount: 0.3 }}
-              transition={{ duration: 0.8, ease: "easeOut" }}
-            >
-              <Link
-                to="about"
-                smooth={true}
-                duration={500}
-                className="cursor-pointer bg-gradient-to-r from-purple-500 to-blue-500 text-white font-bold text-sm sm:text-base md:text-lg py-2 px-4 rounded-full shadow-lg relative overflow-hidden group"
-              >
-                <motion.span
-                  whileHover={{ scale: 1.1 }}
-                  className="absolute inset-0 bg-gradient-to-r from-blue-600 to-purple-600 opacity-0 group-hover:opacity-100 transition duration-300"
-                />
-                <span className="relative">Learn More</span>
-              </Link>
-            </motion.div>
+          <div className="flex flex-wrap gap-4 justify-center sm:justify-start items-center">
+  {/* Link Button */}
+  <motion.div
+    className="inline-flex"
+    initial={{ opacity: 0, y: 50 }}
+    whileInView={{ opacity: 1, y: 0 }}
+    viewport={{ once: false, amount: 0.3 }}
+    transition={{ duration: 0.8, ease: "easeOut" }}
+  >
+    <Link
+      to="about"
+      smooth={true}
+      duration={500}
+      className="cursor-pointer bg-gradient-to-r from-purple-500 to-blue-500 text-white font-bold text-sm sm:text-base md:text-lg py-2 px-4 rounded-full shadow-lg relative overflow-hidden group"
+    >
+      <motion.span
+        whileHover={{ scale: 1.1 }}
+        className="absolute inset-0 bg-gradient-to-r from-blue-600 to-purple-600 opacity-0 group-hover:opacity-100 transition duration-300"
+      />
+      <span className="relative">Learn More</span>
+    </Link>
+  </motion.div>
 
-            <motion.div
-              initial={{ opacity: 0, y: 50 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: false, amount: 0.3 }}
-              transition={{ duration: 0.8, ease: "easeOut" }}
-            >
-              <button
-                onClick={openModal}
-                className="sm:hidden cursor-pointer hover:text-primary bg-gradient-to-r from-purple-500 to-blue-500 text-white font-bold text-sm sm:text-base md:text-lg py-2 px-4 rounded-full shadow-lg"
-              >
-                Request a Quote
-              </button>
-            </motion.div>
-          </div>
+  {/* Request a Quote Button */}
+  <motion.div
+    className="inline-flex"
+    initial={{ opacity: 0, y: 50 }}
+    whileInView={{ opacity: 1, y: 0 }}
+    viewport={{ once: false, amount: 0.3 }}
+    transition={{ duration: 0.8, ease: "easeOut" }}
+  >
+    <button
+      onClick={openModal}
+      className="sm:hidden cursor-pointer hover:text-primary bg-gradient-to-r from-purple-500 to-blue-500 text-white font-bold text-sm sm:text-base md:text-lg py-2 px-4 rounded-full shadow-lg"
+    >
+      Request a Quote
+    </button>
+  </motion.div>
+</div>
+
         </motion.div>
       </div>
 
