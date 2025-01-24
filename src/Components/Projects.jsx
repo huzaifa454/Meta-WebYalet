@@ -29,40 +29,40 @@ const Projects = () => {
         </motion.h1>
       </div>
 
-      <div className="flex flex-wrap justify-center gap-6 sm:gap-8">
-        {projects.map((project, index) => (
-          <motion.a
-            key={index}
-            href={projectlinks[index].url}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="border-2 border-primary rounded-lg overflow-hidden p-4 bg-black hover:bg-gray-800 transition-all duration-300 transform hover:scale-105"
-            title={
-              projectlinks[index].isLive
-                ? "View Live Project"
-                : "View on GitHub"
-            }
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: false, amount: 0.3 }}
-            transition={{ duration: 0.8, delay: index * 0.2 }}
-          >
-            <img
-              src={project}
-              alt={`Project ${index + 1}`}
-              className="w-full h-48 object-cover rounded-md transition-transform duration-300 hover:scale-110"
-            />
-            <div className="mt-4 text-center">
-              <h3 className="text-lg font-semibold text-primary">
-                {projectlinks[index].name}
-              </h3>
-              <p className="text-sm text-gray-400 mt-2">
-                {projectlinks[index].description}
-              </p>
-            </div>
-          </motion.a>
-        ))}
-      </div>
+      {projects.length > 0 ? (
+        <div className="flex flex-wrap justify-center gap-6 sm:gap-8">
+          {projects.map((project, index) => (
+            <motion.a
+              key={index}
+              href={projectlinks[index].url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="relative border-2 border-primary rounded-lg overflow-hidden p-2 bg-black hover:bg-gray-800 transition-all duration-300 transform hover:scale-105 group"
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: false, amount: 0.3 }}
+              transition={{ duration: 0.8, delay: index * 0.2 }}
+            >
+              {projectlinks[index].isLive && (
+                <div className="absolute top-2 right-2 bg-green-500 text-white text-xs px-2 py-1 rounded-md">
+                  Live
+                </div>
+              )}
+              <img
+                src={project}
+                alt={`Screenshot of project ${index + 1}`}
+                className="w-full h-48 object-cover rounded-md transition-transform duration-300 hover:scale-110"
+                loading="lazy"
+              />
+              <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black opacity-0 group-hover:opacity-60 transition-opacity duration-300"></div>
+            </motion.a>
+          ))}
+        </div>
+      ) : (
+        <p className="text-center text-white mt-8">
+          No projects to display yet.
+        </p>
+      )}
     </div>
   );
 };

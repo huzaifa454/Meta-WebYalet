@@ -117,7 +117,7 @@ const Home = () => {
         whileHover={{ scale: 1.1 }}
         className="absolute inset-0 bg-gradient-to-r from-blue-600 to-purple-600 opacity-0 group-hover:opacity-100 transition duration-300"
       />
-      <span className="relative">Learn More</span>
+      <span className="relative">Learn About Us</span>
     </Link>
   </motion.div>
 
