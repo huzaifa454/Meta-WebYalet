@@ -55,7 +55,7 @@ const NavBar = () => {
   };
 
   return (
-    <div className="sticky top-0 z-30 text-white flex justify-between items-center px-12 py-4 text-xl">
+    <div className="sticky top-0 z-30 text-white flex justify-between items-center px-6 py-4 text-xl">
       <div className="flex items-center space-x-4 cursor-default">
         <div className="rounded-full overflow-hidden w-16 h-16 border-2 border-purple-600">
           <img src={logo} alt="Logo" className="object-cover w-full h-full" />

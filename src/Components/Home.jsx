@@ -65,15 +65,18 @@ const Home = () => {
         <motion.h1
           className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-extrabold text-center font-serif bg-gradient-to-r from-purple-500 to-blue-500 bg-clip-text text-transparent"
           initial={{ opacity: 0, y: -50 }}
-          animate={{ opacity: 1, y: 0 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: false, amount: 0.3 }}
           transition={{ duration: 1 }}
         >
           'Meta
         </motion.h1>
+
         <motion.h2
           className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-extrabold text-center mt-2 font-serif "
           initial={{ opacity: 0, y: -50 }}
-          animate={{ opacity: 1, y: 0 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: false, amount: 0.3 }}
           transition={{ duration: 1.2, delay: 0.2 }}
         >
           WebValet.
@@ -81,7 +84,8 @@ const Home = () => {
         <motion.p
           className="max-w-[90%] sm:max-w-[30%] text-center pt-6 px-4"
           initial={{ opacity: 0, y: -50 }}
-          animate={{ opacity: 1, y: 0 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: false, amount: 0.3 }}
           transition={{ duration: 1.5, delay: 0.4 }}
         >
           We create custom websites and stunning designs that elevate your brand
@@ -95,24 +99,39 @@ const Home = () => {
           className="mt-6"
         >
           <div className="flex flex-wrap gap-4">
-            <Link
-              to="about"
-              smooth={true}
-              duration={500}
-              className="cursor-pointer bg-gradient-to-r from-purple-500 to-blue-500 text-white font-bold text-sm sm:text-base md:text-lg py-2 px-4 rounded-full shadow-lg relative overflow-hidden group"
+            <motion.div
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: false, amount: 0.3 }}
+              transition={{ duration: 0.8, ease: "easeOut" }}
             >
-              <motion.span
-                whileHover={{ scale: 1.1 }}
-                className="absolute inset-0 bg-gradient-to-r from-blue-600 to-purple-600 opacity-0 group-hover:opacity-100 transition duration-300"
-              />
-              <span className="relative">Learn More</span>
-            </Link>
-            <button
-              onClick={openModal}
-              className="sm:hidden cursor-pointer hover:text-primary bg-gradient-to-r from-purple-500 to-blue-500 text-white font-bold text-sm sm:text-base md:text-lg py-2 px-4 rounded-full shadow-lg"
+              <Link
+                to="about"
+                smooth={true}
+                duration={500}
+                className="cursor-pointer bg-gradient-to-r from-purple-500 to-blue-500 text-white font-bold text-sm sm:text-base md:text-lg py-2 px-4 rounded-full shadow-lg relative overflow-hidden group"
+              >
+                <motion.span
+                  whileHover={{ scale: 1.1 }}
+                  className="absolute inset-0 bg-gradient-to-r from-blue-600 to-purple-600 opacity-0 group-hover:opacity-100 transition duration-300"
+                />
+                <span className="relative">Learn More</span>
+              </Link>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: false, amount: 0.3 }}
+              transition={{ duration: 0.8, ease: "easeOut" }}
             >
-              Request a Quote
-            </button>
+              <button
+                onClick={openModal}
+                className="sm:hidden cursor-pointer hover:text-primary bg-gradient-to-r from-purple-500 to-blue-500 text-white font-bold text-sm sm:text-base md:text-lg py-2 px-4 rounded-full shadow-lg"
+              >
+                Request a Quote
+              </button>
+            </motion.div>
           </div>
         </motion.div>
       </div>

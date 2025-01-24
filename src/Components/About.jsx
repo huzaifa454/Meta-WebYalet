@@ -1,5 +1,6 @@
 import React from "react";
 import { motion } from "framer-motion";
+import { Link } from "react-scroll";
 import { FaCode, FaPalette } from "react-icons/fa";
 
 const About = () => {
@@ -21,19 +22,21 @@ const About = () => {
   ];
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center py-32 text-white text-center px-6 md:px-12 cursor-default">
+    <div className="min-h-screen flex flex-col items-center justify-center text-white text-center px-6 md:px-12 cursor-default">
       <motion.h1
         className="font-serif bg-gradient-to-r from-purple-500 to-blue-600 bg-clip-text text-transparent text-6xl md:text-8xl font-extrabold mb-8"
         initial={{ opacity: 0, y: -50 }}
-        animate={{ opacity: 1, y: 0 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: false, amount: 0.3 }}
         transition={{ duration: 1 }}
       >
-        About <span className="text-white">Us.</span> 
+        About <span className="text-white">Us.</span>
       </motion.h1>
       <motion.p
         className="max-w-3xl text-lg md:text-xl leading-relaxed mb-12 font-serif"
         initial={{ opacity: 0, y: -50 }}
-        animate={{ opacity: 1, y: 0 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: false, amount: 0.3 }}
         transition={{ duration: 1 }}
       >
         We are passionate about delivering top-notch web development and graphic
@@ -46,7 +49,8 @@ const About = () => {
             key={index}
             className="bg-gray-900 bg-opacity-90 p-8 rounded-xl shadow-lg hover:scale-105 flex flex-col items-center text-center"
             initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: false, amount: 0.3 }}
             transition={{ duration: 0.8, delay: index * 0.2 }}
           >
             <Icon className={`text-5xl ${color} mb-4`} />
@@ -57,6 +61,35 @@ const About = () => {
           </motion.div>
         ))}
       </div>
+      <motion.div
+        initial={{ scale: 0.8, opacity: 0 }}
+        whileInView={{ scale: 1, opacity: 1 }}
+        viewport={{ once: false, amount: 0.3 }}
+        transition={{ duration: 0.5, delay: 0.6 }}
+        className="mt-6"
+      >
+        <div className="flex flex-wrap gap-4">
+          <motion.div
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: false, amount: 0.3 }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+          >
+            <Link
+              to="service"
+              smooth={true}
+              duration={500}
+              className="cursor-pointer bg-gradient-to-r from-purple-500 to-blue-500 text-white font-bold text-sm sm:text-base md:text-lg py-2 px-4 rounded-full shadow-lg relative overflow-hidden group"
+            >
+              <motion.span
+                whileHover={{ scale: 1.1 }}
+                className="absolute inset-0 bg-gradient-to-r from-blue-600 to-purple-600 opacity-0 group-hover:opacity-100 transition duration-300"
+              />
+              <span className="relative">Learn More</span>
+            </Link>
+          </motion.div>
+        </div>
+      </motion.div>
     </div>
   );
 };
