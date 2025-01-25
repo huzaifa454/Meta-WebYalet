@@ -216,8 +216,8 @@ const NavBar = () => {
       {/* Modal */}
       {isModalOpen && (
         <div className="fixed inset-0 flex items-center justify-center z-50">
-          <div className="bg-white p-6 rounded-lg w-11/12 sm:w-1/2">
-            <h2 className="text-2xl font-bold mb-4 text-black text-center font-sans cursor-default">
+          <div className="bg-gray-900 bg-opacity-90 p-6 rounded-lg w-11/12 sm:w-1/2">
+            <h2 className="text-2xl font-bold mb-4 text-white text-center font-serif cursor-default">
               Request a Free Quote
             </h2>
             <form onSubmit={handleSubmit}>
@@ -227,7 +227,7 @@ const NavBar = () => {
                 value={formData.name}
                 onChange={handleChange}
                 placeholder="Your Name"
-                className="mb-4 p-2 w-full border rounded-md text-black"
+                className="mb-4 p-3 w-full border border-gray-600 rounded-md text-gray-200 bg-gray-900 focus:outline-none focus:ring-2 focus:ring-purple-500"
               />
               <input
                 type="text"
@@ -235,7 +235,7 @@ const NavBar = () => {
                 value={formData.email}
                 onChange={handleChange}
                 placeholder="email"
-                className="mb-4 p-2 w-full border rounded-md text-black"
+                className="mb-4 p-3 w-full border border-gray-600 rounded-md text-gray-200 bg-gray-900 focus:outline-none focus:ring-2 focus:ring-purple-500"
               />
               <input
                 type="text"
@@ -243,7 +243,7 @@ const NavBar = () => {
                 value={formData.projectType}
                 onChange={handleChange}
                 placeholder="projectType"
-                className="mb-4 p-2 w-full border rounded-md text-black"
+                className="mb-4 p-3 w-full border border-gray-600 rounded-md text-gray-200 bg-gray-900 focus:outline-none focus:ring-2 focus:ring-purple-500"
               />
               <input
                 type="text"
@@ -251,7 +251,7 @@ const NavBar = () => {
                 value={formData.budgetRange}
                 onChange={handleChange}
                 placeholder="budgetRange"
-                className="mb-4 p-2 w-full border rounded-md text-black"
+                className="mb-4 p-3 w-full border border-gray-600 rounded-md text-gray-200 bg-gray-900 focus:outline-none focus:ring-2 focus:ring-purple-500"
               />
               <input
                 type="text"
@@ -259,14 +259,14 @@ const NavBar = () => {
                 value={formData.timeline}
                 onChange={handleChange}
                 placeholder="timeline"
-                className="mb-4 p-2 w-full border rounded-md text-black"
+                className="mb-4 p-3 w-full border border-gray-600 rounded-md text-gray-200 bg-gray-900 focus:outline-none focus:ring-2 focus:ring-purple-500"
               />
               <textarea
                 name="message"
                 value={formData.message}
                 onChange={handleChange}
                 placeholder="Additional Info"
-                className="mb-4 p-2 w-full border rounded-md text-black"
+                className="mb-4 p-3 w-full border border-gray-600 rounded-md text-gray-200 bg-gray-900 focus:outline-none focus:ring-2 focus:ring-purple-500"
               />
               <div className="flex justify-between">
                 <button

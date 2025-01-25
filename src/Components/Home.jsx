@@ -102,53 +102,49 @@ const Home = () => {
           className="mt-6"
         >
           <div className="flex flex-wrap gap-4 justify-center sm:justify-start items-center">
-  {/* Link Button */}
-  <motion.div
-    className="inline-flex"
-    initial={{ opacity: 0, y: 50 }}
-    whileInView={{ opacity: 1, y: 0 }}
-    viewport={{ once: false, amount: 0.3 }}
-    transition={{ duration: 0.8, ease: "easeOut" }}
-  >
-    <Link
-      to="about"
-      smooth={true}
-      duration={500}
-      className="cursor-pointer bg-gradient-to-r from-purple-500 to-blue-500 text-white font-bold text-sm sm:text-base md:text-lg py-2 px-4 rounded-full shadow-lg relative overflow-hidden group"
-    >
-      <motion.span
-        whileHover={{ scale: 1.1 }}
-        className="absolute inset-0 bg-gradient-to-r from-blue-600 to-purple-600 opacity-0 group-hover:opacity-100 transition duration-300"
-      />
-      <span className="relative">Learn About Us</span>
-    </Link>
-  </motion.div>
+            <motion.div
+              className="inline-flex"
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: false, amount: 0.3 }}
+              transition={{ duration: 0.8, ease: "easeOut" }}
+            >
+              <Link
+                to="about"
+                smooth={true}
+                duration={500}
+                className="cursor-pointer bg-gradient-to-r from-purple-500 to-blue-500 text-white font-bold text-sm sm:text-base md:text-lg py-2 px-4 rounded-full shadow-lg relative overflow-hidden group"
+              >
+                <motion.span
+                  whileHover={{ scale: 1.1 }}
+                  className="absolute inset-0 bg-gradient-to-r from-blue-600 to-purple-600 opacity-0 group-hover:opacity-100 transition duration-300"
+                />
+                <span className="relative">Learn About Us</span>
+              </Link>
+            </motion.div>
 
-  {/* Request a Quote Button */}
-  <motion.div
-    className="inline-flex"
-    initial={{ opacity: 0, y: 50 }}
-    whileInView={{ opacity: 1, y: 0 }}
-    viewport={{ once: false, amount: 0.3 }}
-    transition={{ duration: 0.8, ease: "easeOut" }}
-  >
-    <button
-      onClick={openModal}
-      className="sm:hidden cursor-pointer hover:text-primary bg-gradient-to-r from-purple-500 to-blue-500 text-white font-bold text-sm sm:text-base md:text-lg py-2 px-4 rounded-full shadow-lg"
-    >
-      Request a Quote
-    </button>
-  </motion.div>
-</div>
-
+            <motion.div
+              className="inline-flex"
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: false, amount: 0.3 }}
+              transition={{ duration: 0.8, ease: "easeOut" }}
+            >
+              <button
+                onClick={openModal}
+                className="sm:hidden cursor-pointer hover:text-primary bg-gradient-to-r from-purple-500 to-blue-500 text-white font-bold text-sm sm:text-base md:text-lg py-2 px-4 rounded-full shadow-lg"
+              >
+                Request a Quote
+              </button>
+            </motion.div>
+          </div>
         </motion.div>
       </div>
 
-      {/* Modal */}
       {isModalOpen && (
-        <div className="fixed inset-0 bg-gray-700 bg-opacity-50 flex items-center justify-center z-50">
-          <div className="bg-white p-6 rounded-lg w-11/12 sm:w-1/2">
-            <h2 className="text-2xl font-bold mb-4 text-center">
+        <div className="fixed inset-0 flex items-center justify-center z-50">
+          <div className="bg-gray-900 bg-opacity-90 p-6 rounded-lg w-11/12 sm:w-1/2">
+            <h2 className="text-white text-2xl font-bold font-serif mb-4 text-center">
               Request a Free Quote
             </h2>
             <form onSubmit={handleSubmit}>
@@ -158,7 +154,7 @@ const Home = () => {
                 value={formData.name}
                 onChange={handleChange}
                 placeholder="Your Name"
-                className="mb-4 p-2 w-full border rounded-md text-black"
+                className="mb-4 p-3 w-full border border-gray-600 rounded-md text-gray-200 bg-gray-900 focus:outline-none focus:ring-2 focus:ring-purple-500"
               />
               <input
                 type="text"
@@ -166,7 +162,7 @@ const Home = () => {
                 value={formData.email}
                 onChange={handleChange}
                 placeholder="email"
-                className="mb-4 p-2 w-full border rounded-md text-black"
+                className="mb-4 p-3 w-full border border-gray-600 rounded-md text-gray-200 bg-gray-900 focus:outline-none focus:ring-2 focus:ring-purple-500"
               />
               <input
                 type="text"
@@ -174,7 +170,7 @@ const Home = () => {
                 value={formData.projectType}
                 onChange={handleChange}
                 placeholder="projectType"
-                className="mb-4 p-2 w-full border rounded-md text-black"
+                className="mb-4 p-3 w-full border border-gray-600 rounded-md text-gray-200 bg-gray-900 focus:outline-none focus:ring-2 focus:ring-purple-500"
               />
               <input
                 type="text"
@@ -182,7 +178,7 @@ const Home = () => {
                 value={formData.budgetRange}
                 onChange={handleChange}
                 placeholder="budgetRange"
-                className="mb-4 p-2 w-full border rounded-md text-black"
+                className="mb-4 p-3 w-full border border-gray-600 rounded-md text-gray-200 bg-gray-900 focus:outline-none focus:ring-2 focus:ring-purple-500"
               />
               <input
                 type="text"
@@ -190,14 +186,14 @@ const Home = () => {
                 value={formData.timeline}
                 onChange={handleChange}
                 placeholder="timeline"
-                className="mb-4 p-2 w-full border rounded-md text-black"
+                className="mb-4 p-3 w-full border border-gray-600 rounded-md text-gray-200 bg-gray-900 focus:outline-none focus:ring-2 focus:ring-purple-500"
               />
               <textarea
                 name="message"
                 value={formData.message}
                 onChange={handleChange}
                 placeholder="Additional Info"
-                className="mb-4 p-2 w-full border rounded-md text-black"
+                className="mb-4 p-3 w-full border border-gray-600 rounded-md text-gray-200 bg-gray-900 focus:outline-none focus:ring-2 focus:ring-purple-500"
               />
               <div className="flex justify-between">
                 <button

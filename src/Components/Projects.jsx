@@ -16,7 +16,7 @@ const Projects = () => {
   const projects = [car, pro2, pro3, pro4, pro5];
 
   return (
-    <div className="flex flex-col min-h-screen text-white font-primary pt-12">
+    <div className="flex flex-col min-h-screen text-white font-primary pt-12 cursor-default">
       <div className="text-center mb-16">
         <motion.h1
           className="font-serif bg-gradient-to-r from-purple-500 to-blue-600 bg-clip-text text-transparent text-6xl md:text-8xl font-extrabold relative"
