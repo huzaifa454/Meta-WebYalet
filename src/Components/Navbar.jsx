@@ -1,4 +1,6 @@
 import { useState } from "react";
+import emailjs from "emailjs-com";
+
 import {
   FaHome,
   FaUserAlt,
@@ -50,14 +52,31 @@ const NavBar = () => {
       return;
     }
 
-    alert("Form Submitted!");
-    closeModal();
+    emailjs.send(serviceId, templateId, formData, userId).then(
+      (result) => {
+        alert("Email sent successfully!");
+        console.log("Email sent:", result.text);
+        setFormData({
+          name: "",
+          email: "",
+          projectType: "",
+          budgetRange: "",
+          timeline: "",
+          message: "",
+        });
+        closeModal();
+      },
+      (error) => {
+        alert("Failed to send email. Please try again.");
+        console.error("Email error:", error.text);
+      }
+    );
   };
 
   return (
     <div className="sticky top-0 z-30 text-white flex justify-between items-center px-6 py-4 text-xl">
       <div className="flex items-center space-x-4 cursor-default">
-        <div className="rounded-full overflow-hidden w-16 h-16 border-2 border-purple-600">
+        <div className="rounded-full overflow-hidden w-16 h-16">
           <img src={logo} alt="Logo" className="object-cover w-full h-full" />
         </div>
         <h1 className="text-xl font-serif">Meta WebValet</h1>

@@ -7,10 +7,11 @@ const Home = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [formData, setFormData] = useState({
     name: "",
-    zipCode: "",
-    houseSize: "",
-    contactNumber: "",
-    comments: "",
+    email: "",
+    projectType: "",
+    budgetRange: "",
+    timeline: "",
+    message: "",
   });
 
   const openModal = () => setIsModalOpen(true);
@@ -30,10 +31,11 @@ const Home = () => {
 
     if (
       !formData.name ||
-      !formData.zipCode ||
-      !formData.houseSize ||
-      !formData.contactNumber ||
-      !formData.comments
+      !formData.email ||
+      !formData.projectType ||
+      !formData.budgetRange ||
+      !formData.timeline ||
+      !formData.message
     ) {
       alert("Please fill all the fields!");
       return;
@@ -45,10 +47,11 @@ const Home = () => {
         console.log("Email sent:", result.text);
         setFormData({
           name: "",
-          zipCode: "",
-          houseSize: "",
-          contactNumber: "",
-          comments: "",
+          email: "",
+          projectType: "",
+          budgetRange: "",
+          timeline: "",
+          message: "",
         });
         closeModal();
       },
