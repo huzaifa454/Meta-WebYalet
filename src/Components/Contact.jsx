@@ -88,11 +88,10 @@ const Contact = () => {
           viewport={{ once: true, amount: 0.3 }}
           transition={{ duration: 1 }}
         >
-         
           <div className="flex items-center space-x-4">
             <FaPhoneAlt className="text-purple-600 text-2xl" />
             <span className="text-lg font-medium text-white">
-              +4412-345-6789
+              +44 7709 783 141
             </span>
           </div>
           <div className="flex items-center space-x-4">
@@ -103,9 +102,7 @@ const Contact = () => {
           </div>
           <div className="flex items-center space-x-4">
             <FaMapMarkerAlt className="text-purple-600 text-2xl" />
-            <span className="text-lg font-medium text-white">
-              123 Main Street, London, UK
-            </span>
+            <span className="text-lg font-medium text-white">Carlisle, UK</span>
           </div>
         </motion.div>
 

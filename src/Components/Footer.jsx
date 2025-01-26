@@ -4,7 +4,7 @@ import { Link } from "react-scroll";
 
 const Footer = () => {
   return (
-    <footer className="bg-gray-900 text-white py-6 mt-12 cursor-default">
+    <footer className="bg-gray-900 text-white px-6 py-6 mt-12 cursor-default">
       <div className="max-w-5xl mx-auto flex flex-col sm:flex-row justify-between items-center">
         <div className="mb-4 sm:mb-0 text-center sm:text-left">
           <div className="flex items-center space-x-2">
@@ -13,7 +13,7 @@ const Footer = () => {
           </div>
           <div className="flex items-center space-x-2">
             <FaPhoneAlt className="text-purple-500" />
-            <p className="text-sm">+4412-345-6789</p>
+            <p className="text-sm">+44 7709 783 141</p>
           </div>
         </div>
 
